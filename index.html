@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chandra Bhanu Bisht | Full Stack Developer</title>
+    <meta
+      name="description"
+      content="Full stack MERN developer building AI-powered web apps. Open to internships and part-time roles."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #1a1c22;
+        --panel: #22252d;
+        --bar: #2a2e38;
+        --line: #343946;
+        --text: #d5d9e2;
+        --dim: #8b93a5;
+        --key: #7aa2f7;
+        --str: #e0af68;
+        --fn: #9ece6a;
+        --kw: #bb9af7;
+        --sans: "IBM Plex Sans", system-ui, sans-serif;
+        --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      }
+      [data-theme="light"] {
+        --bg: #f5f6f8;
+        --panel: #fff;
+        --bar: #e9ebf0;
+        --line: #d6d9e0;
+        --text: #23262e;
+        --dim: #636b7c;
+        --key: #2c5bd1;
+        --str: #9a5b00;
+        --fn: #2f7a1e;
+        --kw: #7a43c8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.65 var(--sans);
+      }
+      a {
+        color: var(--key);
+      }
+      :focus-visible {
+        outline: 2px solid var(--key);
+        outline-offset: 3px;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+      }
+      header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+        gap: 12px;
+      }
+      nav {
+        display: flex;
+        gap: 18px;
+        font: 14px var(--mono);
+        overflow-x: auto;
+      }
+      nav a {
+        color: var(--dim);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      nav a:hover {
+        color: var(--text);
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      #theme {
+        background: var(--panel);
+        color: var(--text);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 5px 10px;
+        font: 13px var(--mono);
+      }
+      section {
+        padding: 56px 0 8px;
+      }
+      h2 {
+        font: 500 14px var(--mono);
+        color: var(--dim);
+        margin: 0 0 18px;
+      }
+      h2::before {
+        content: "// ";
+        color: var(--kw);
+      }
+      .win {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .win .bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--bar);
+        padding: 10px 14px;
+        font: 13px var(--mono);
+        color: var(--dim);
+      }
+      .dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #ec6a5e;
+      }
+      .dot:nth-child(2) {
+        background: #f4bf4f;
+      }
+      .dot:nth-child(3) {
+        background: #61c554;
+      }
+      .bar span:last-child {
+        margin-left: 8px;
+      }
+      pre {
+        margin: 0;
+        padding: 20px;
+        font: 14px/1.75 var(--mono);
+        overflow-x: auto;
+        white-space: pre;
+      }
+      .k {
+        color: var(--key);
+      }
+      .s {
+        color: var(--str);
+      }
+      .f {
+        color: var(--fn);
+      }
+      .w {
+        color: var(--kw);
+      }
+      .d {
+        color: var(--dim);
+      }
+      .hero {
+        padding-top: 44px;
+      }
+      .hero h1 {
+        font: 600 clamp(32px, 6vw, 52px)/1.1 var(--sans);
+        margin: 0 0 12px;
+        letter-spacing: -0.02em;
+      }
+      .hero p.lead {
+        max-width: 60ch;
+        color: var(--dim);
+        font-size: 18px;
+        margin: 0 0 22px;
+      }
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 9px 16px;
+        border-radius: 7px;
+        border: 1px solid var(--line);
+        color: var(--text);
+        text-decoration: none;
+        font: 500 14px var(--mono);
+        background: var(--panel);
+      }
+      .btn.main {
+        background: var(--key);
+        border-color: var(--key);
+        color: #10131a;
+      }
+      .btn:hover {
+        border-color: var(--key);
+      }
+      .log {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .log li {
+        padding: 18px 0;
+        border-top: 1px solid var(--line);
+      }
+      .log li:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .log .head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 4px 16px;
+      }
+      .log h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .log .when {
+        font: 13px var(--mono);
+        color: var(--dim);
+      }
+      .log .org {
+        color: var(--dim);
+        font-size: 14px;
+        margin: 2px 0 8px;
+      }
+      .log ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .log li li {
+        border: 0;
+        padding: 2px 0;
+      }
+      .tabs {
+        display: flex;
+        gap: 2px;
+        background: var(--bar);
+        overflow-x: auto;
+      }
+      .tabs button {
+        background: none;
+        border: 0;
+        border-right: 1px solid var(--line);
+        color: var(--dim);
+        padding: 10px 16px;
+        font: 13px var(--mono);
+        white-space: nowrap;
+      }
+      .tabs button[aria-selected="true"] {
+        background: var(--panel);
+        color: var(--text);
+        box-shadow: inset 0 2px 0 var(--key);
+      }
+      .pane {
+        padding: 20px;
+      }
+      .pane[hidden] {
+        display: none;
+      }
+      .pane h3 {
+        margin: 0 0 4px;
+        font-size: 20px;
+      }
+      .pane .sub {
+        color: var(--dim);
+        margin: 0 0 12px;
+      }
+      .pane ul {
+        padding-left: 18px;
+        margin: 0 0 14px;
+      }
+      .pane li {
+        margin-bottom: 5px;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 0 0 14px;
+        padding: 0;
+        list-style: none;
+      }
+      .chips li {
+        margin: 0;
+        font: 12px var(--mono);
+        padding: 3px 9px;
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        color: var(--dim);
+      }
+      .links a {
+        margin-right: 16px;
+        font: 14px var(--mono);
+      }
+      .shots {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 10px;
+        margin: 0 0 16px;
+      }
+      .shots figure {
+        margin: 0;
+      }
+      .shots img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .shots figcaption {
+        font: 12px var(--mono);
+        color: var(--dim);
+        margin-top: 5px;
+      }
+      .live {
+        display: inline-block;
+        margin: 0 10px 8px 0;
+        padding: 7px 13px;
+        border-radius: 7px;
+        background: var(--key);
+        color: #10131a !important;
+        text-decoration: none;
+        font: 500 13px var(--mono);
+      }
+      .note {
+        font: 12px var(--mono);
+        color: var(--dim);
+        margin: 0 0 12px;
+      }
+      .edu p {
+        margin: 0 0 6px;
+      }
+      footer {
+        margin-top: 64px;
+        padding: 24px 0 40px;
+        border-top: 1px solid var(--line);
+        color: var(--dim);
+        font: 13px var(--mono);
+      }
+      @media (max-width: 560px) {
+        pre {
+          font-size: 12.5px;
+        }
+        nav {
+          gap: 12px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="assets/css/site.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <nav aria-label="Sections">
+          <a href="#top">~/chandra</a><a href="#experience">experience</a
+          ><a href="#projects">projects</a><a href="#skills">skills</a
+          ><a href="#contact">contact</a>
+        </nav>
+        <button
+          id="theme"
+          type="button"
+          aria-label="Toggle light or dark theme"
+        >
+          light
+        </button>
+      </div>
+    </header>
+
+    <main class="wrap" id="top">
+      <section class="hero">
+        <h1>Chandra Bhanu Bisht</h1>
+        <p class="lead">
+          I'm a B.Tech CSE student who builds full stack MERN apps with AI built
+          in, from Gemini-powered code generation to RAG learning assistants. I
+          like turning ideas into working products and shipping them with Docker
+          and CI/CD. Currently interning at Buildsy, and open to internships and
+          part-time roles.
+        </p>
+        <div class="cta">
+          <a
+            class="btn main"
+            href="assets/docs/Chandra_Bhanu_Bisht_Resume.pdf"
+            download
+            >Download resume</a
+          >
+          <a class="btn" href="#projects">See projects</a>
+          <a class="btn" href="mailto:sauravbisht0487@gmail.com">Email me</a>
+        </div>
+        <div
+          class="win"
+          role="img"
+          aria-label="Summary of Chandra as a JavaScript object"
+        >
+          <div class="bar">
+            <span class="dot"></span><span class="dot"></span
+            ><span class="dot"></span><span>developer.js</span>
+          </div>
+          <pre><span class="w">const</span> <span class="k">chandra</span> = {
+  <span class="k">role</span>:     <span class="s">"Full Stack Developer"</span>,
+  <span class="k">stack</span>:    [<span class="s">"React"</span>, <span class="s">"TypeScript"</span>, <span class="s">"Node.js"</span>, <span class="s">"Express"</span>, <span class="s">"MongoDB"</span>],
+  <span class="k">ai</span>:       [<span class="s">"Gemini API"</span>, <span class="s">"RAG"</span>, <span class="s">"Vector Search"</span>],
+  <span class="k">devops</span>:   [<span class="s">"Docker"</span>, <span class="s">"GitHub Actions"</span>],
+  <span class="k">now</span>:      <span class="s">"Intern @ Buildsy"</span>,
+  <span class="k">location</span>: <span class="s">"Uttarakhand, India"</span>,
+  <span class="k">openTo</span>:   [<span class="s">"Internship"</span>, <span class="s">"Part-time"</span>],
+  <span class="f">hireable</span>() { <span class="w">return</span> <span class="w">true</span>; }
+};</pre>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2>experience</h2>
+        <ul class="log">
+          <li>
+            <div class="head">
+              <h3>Full Stack Development Intern</h3>
+              <span class="when">Jul 2026 &ndash; Present</span>
+            </div>
+            <div class="org">Buildsy &middot; Remote, college-facilitated</div>
+            <ul>
+              <li>
+                Shipped 3 features on a live WordPress/WooCommerce store:
+                Inspiration Gallery, Tiles Uploaded section, and broken-link
+                fixes.
+              </li>
+              <li>
+                Ran a UX audit that found 6&ndash;7 usability issues and
+                presented prioritized fixes to 4&ndash;5 stakeholders.
+              </li>
+              <li>
+                Built a Python (NumPy, SciPy) pipeline that crops and exports
+                catalog images for 15+ product codes, cutting ~3 hours of manual
+                work to 30 minutes.
+              </li>
+              <li>Worked in a 5-member team on the live platform.</li>
+            </ul>
+          </li>
+          <li>
+            <div class="head">
+              <h3>Web Development Intern</h3>
+              <span class="when">Jul 2025 &ndash; Oct 2025</span>
+            </div>
+            <div class="org">Pantech.ai &middot; Remote</div>
+            <ul>
+              <li>
+                Built responsive React.js features with reusable components.
+              </li>
+              <li>
+                Integrated REST APIs for user management, dashboards, and
+                product-purchase flows.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section id="projects">
+        <h2>projects</h2>
+        <div class="win">
+          <div class="tabs" role="tablist" aria-label="Projects">
+            <button role="tab" id="t0" aria-selected="true" aria-controls="p0">
+              ai-sdlc-platform
+            </button>
+            <button
+              role="tab"
+              id="t1"
+              aria-selected="false"
+              aria-controls="p1"
+              tabindex="-1"
+            >
+              eduflow
+            </button>
+          </div>
+          <div class="pane" role="tabpanel" id="p0" aria-labelledby="t0">
+            <h3>AI-SDLC Platform</h3>
+            <p class="sub">
+              Turns requirements into user stories, code, and a GitHub repo.
+            </p>
+            <ul>
+              <li>
+                6-stage workflow (Organization, Project, Requirement, User
+                Story, Code, GitHub) with full CRUD on 4 core entities.
+              </li>
+              <li>
+                6-layer backend: Routes, Middleware, Controllers, Services,
+                Repositories, Models. JWT auth, protected routes,
+                ownership-based access.
+              </li>
+              <li>
+                Gemini API converts requirements into 3 structured user stories
+                and generates 5 source files via schema-constrained prompts.
+              </li>
+              <li>
+                GitHub API creates repos and pushes the generated code
+                automatically.
+              </li>
+              <li>
+                Dockerized backend, GitHub Actions CI/CD, React + TypeScript
+                frontend with route-level lazy loading.
+              </li>
+            </ul>
+            <div class="shots">
+              <figure>
+                <a
+                  href="assets/images/ai-sdlc-requirements.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="assets/images/ai-sdlc-requirements.webp"
+                    alt="Requirements page"
+                    width="1748"
+                    height="897"
+                    loading="lazy"
+                /></a>
+                <figcaption>Requirements page</figcaption>
+              </figure>
+              <figure>
+                <a
+                  href="assets/images/ai-sdlc-stories.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="assets/images/ai-sdlc-stories.webp"
+                    alt="User stories and AI-generated code"
+                    width="1730"
+                    height="897"
+                    loading="lazy"
+                /></a>
+                <figcaption>User stories and AI-generated code</figcaption>
+              </figure>
+              <figure>
+                <a
+                  href="assets/images/ai-sdlc-workspace.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="assets/images/ai-sdlc-workspace.webp"
+                    alt="Organization workspaces"
+                    width="1683"
+                    height="887"
+                    loading="lazy"
+                /></a>
+                <figcaption>Organization workspaces</figcaption>
+              </figure>
+            </div>
+            <ul class="chips">
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>MongoDB</li>
+              <li>Gemini API</li>
+              <li>Docker</li>
+              <li>CI/CD</li>
+            </ul>
+            <a
+              class="live"
+              href="https://ai-sdlc-frontend-one.vercel.app"
+              target="_blank"
+              rel="noopener"
+              >Live demo &rarr;</a
+            >
+            <p class="note">
+              Backend runs on a free Render tier, so the first request can take
+              about a minute to wake up.
+            </p>
+            <div class="links">
+              <a
+                href="https://github.com/sauravbisht0487-png/ai-sdlc-frontend"
+                target="_blank"
+                rel="noopener"
+                >frontend code</a
+              ><a
+                href="https://github.com/sauravbisht0487-png/AI-SDLC_15_8"
+                target="_blank"
+                rel="noopener"
+                >backend code</a
+              >
+            </div>
+          </div>
+          <div class="pane" role="tabpanel" id="p1" aria-labelledby="t1" hidden>
+            <h3>EduFlow</h3>
+            <p class="sub">An AI-native learning management system.</p>
+            <ul>
+              <li>
+                Educators publish courses; students enroll, stream content,
+                track progress, and leave ratings. Clerk auth with role-based
+                access.
+              </li>
+              <li>
+                Dashboards, search and filtering, enrollment tracking, Stripe
+                payments, MongoDB Atlas storage.
+              </li>
+              <li>
+                RAG assistant retrieves course content from a vector database to
+                answer student questions in context.
+              </li>
+              <li>Real-time course and community chat over Socket.IO.</li>
+            </ul>
+            <div class="shots">
+              <figure>
+                <a
+                  href="assets/images/eduflow-home.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="assets/images/eduflow-home.webp"
+                    alt="Student landing page"
+                    width="1803"
+                    height="876"
+                    loading="lazy"
+                /></a>
+                <figcaption>Student landing page</figcaption>
+              </figure>
+              <figure>
+                <a
+                  href="assets/images/eduflow-add-course.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="assets/images/eduflow-add-course.webp"
+                    alt="Educator: add new course"
+                    width="1828"
+                    height="905"
+                    loading="lazy"
+                /></a>
+                <figcaption>Educator: add new course</figcaption>
+              </figure>
+            </div>
+            <ul class="chips">
+              <li>MERN</li>
+              <li>TypeScript</li>
+              <li>RAG</li>
+              <li>Vector DB</li>
+              <li>Gemini API</li>
+              <li>Socket.IO</li>
+              <li>Clerk</li>
+              <li>Stripe</li>
+            </ul>
+            <a
+              class="live"
+              href="https://edu-flow-eosin.vercel.app"
+              target="_blank"
+              rel="noopener"
+              >Live demo &rarr;</a
+            >
+            <div class="links">
+              <a
+                href="https://github.com/sauravbisht0487-png/eduFlow_"
+                target="_blank"
+                rel="noopener"
+                >code</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>skills</h2>
+        <div class="win">
+          <div class="bar">
+            <span class="dot"></span><span class="dot"></span
+            ><span class="dot"></span><span>skills.json</span>
+          </div>
+          <pre>{
+  <span class="k">"languages"</span>: [<span class="s">"JavaScript"</span>, <span class="s">"TypeScript"</span>, <span class="s">"Java"</span>, <span class="s">"C++"</span>, <span class="s">"C"</span>],
+  <span class="k">"frontend"</span>:  [<span class="s">"React"</span>, <span class="s">"Tailwind CSS"</span>, <span class="s">"Bootstrap"</span>],
+  <span class="k">"backend"</span>:   [<span class="s">"Node.js"</span>, <span class="s">"Express"</span>, <span class="s">"REST"</span>, <span class="s">"JWT"</span>, <span class="s">"Socket.IO"</span>],
+  <span class="k">"data"</span>:      [<span class="s">"MongoDB"</span>, <span class="s">"Mongoose"</span>, <span class="s">"SQL"</span>, <span class="s">"Vector DBs"</span>],
+  <span class="k">"ai"</span>:        [<span class="s">"Gemini API"</span>, <span class="s">"RAG"</span>, <span class="s">"Embeddings"</span>, <span class="s">"Prompt Engineering"</span>],
+  <span class="k">"devops"</span>:    [<span class="s">"Docker"</span>, <span class="s">"GitHub Actions"</span>, <span class="s">"Linux"</span>],
+  <span class="k">"tools"</span>:     [<span class="s">"Git"</span>, <span class="s">"Postman"</span>, <span class="s">"MongoDB Atlas"</span>],
+  <span class="k">"cs"</span>:        [<span class="s">"DSA"</span>, <span class="s">"OOP"</span>, <span class="s">"DBMS"</span>, <span class="s">"Operating Systems"</span>]
+}</pre>
+        </div>
+      </section>
+
+      <section id="education">
+        <h2>education</h2>
+        <div class="edu">
+          <p>
+            <strong>B.Tech, Computer Science Engineering</strong>
+            (2023&ndash;2027)<br /><span class="d"
+              >VMSB, Uttarakhand Technical University</span
+            >
+          </p>
+          <p class="d">
+            Coursework: DSA, Full Stack Web Development, OOP, DBMS, Operating
+            Systems
+          </p>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>contact</h2>
+        <div class="win">
+          <div class="bar">
+            <span class="dot"></span><span class="dot"></span
+            ><span class="dot"></span><span>contact.js</span>
+          </div>
+          <pre><span class="w">const</span> <span class="k">contact</span> = {
+  <span class="k">email</span>:    <span class="s">"<a href="mailto:sauravbisht0487@gmail.com">sauravbisht0487@gmail.com</a>"</span>,
+  <span class="k">phone</span>:    <span class="s">"<a href="tel:+918191897337">+91 8191897337</a>"</span>,
+  <span class="k">github</span>:   <span class="s">"<a href="https://github.com/sauravbisht0487-png" target="_blank" rel="noopener">sauravbisht0487-png</a>"</span>,
+  <span class="k">linkedin</span>: <span class="s">"<a href="https://linkedin.com/in/chandra-bhanu-bisht-a7b756353" target="_blank" rel="noopener">chandra-bhanu-bisht</a>"</span>
+};</pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        &copy; <span id="yr">2026</span> Chandra Bhanu Bisht
+      </div>
+    </footer>
+
+    <script src="assets/js/site.js" defer></script>
+  </body>
+</html>
